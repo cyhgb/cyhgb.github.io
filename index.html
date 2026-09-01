@@ -8,43 +8,137 @@
     <title>CYHGB</title>
 
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/latin-modern-web@0.1.1/style/latin-modern.css">
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
 
     <style>
-        body {
-            margin: 0;
-            background: black;
-            color: white;
-            font-family: "LM Roman 10", serif;
-            text-align: center;
+
+        * {
+            box-sizing: border-box;
         }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: KaTeX_Main, "Times New Roman", serif;
+            overflow: hidden;
+        }
+
+        /* Moving background */
+
+        .background {
+            position: fixed;
+            inset: -50%;
+            width: 200%;
+            height: 200%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 40%,
+                    rgba(80, 80, 255, 0.15),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 70% 60%,
+                    rgba(180, 80, 255, 0.12),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 50% 50%,
+                    rgba(255, 255, 255, 0.04),
+                    transparent 40%
+                );
+
+            animation: drift 20s ease-in-out infinite alternate;
+            z-index: -2;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(-5%, -3%) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(4%, 5%) rotate(3deg);
+            }
+
+            100% {
+                transform: translate(-2%, -4%) rotate(-3deg);
+            }
+        }
+
+        /* Main content */
+
         main {
-            min-height: 100vh;
+            width: 100%;
+            height: 100vh;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
-            font-size: 60px;
+            margin: 0 0 25px 0;
+            font-size: 64px;
+            font-weight: normal;
             letter-spacing: 12px;
         }
 
         p {
-            font-size: 20px;
+            margin: 0 0 45px 0;
+            font-size: 18px;
             font-style: italic;
+            letter-spacing: 2px;
         }
+
+        /* Galaxy */
+
+        .galaxy {
+            width: min(650px, 75vw);
+            max-height: 45vh;
+            object-fit: contain;
+
+            opacity: 0.9;
+
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
     </style>
 </head>
 
 <body>
 
+    <div class="background"></div>
+
     <main>
+
         <h1>CYHGB</h1>
 
         <p>aGkgdGhpcyBpcyBjeWhnYiwgaSBsb3ZlIGFzdHJvcGh5c2ljcywgcGh5c2ljcyBhbmQgbWF0aA==</p>
+
+        <img class="galaxy" src="galaxy.jpg" alt="Galaxy">
+
     </main>
 
 </body>
