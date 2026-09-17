@@ -90,7 +90,7 @@
   .rot13-label{
     font-family:var(--mono);
     color:var(--ink-dim);
-    font-size:1.03rem;
+    font-size:0.78rem;
     letter-spacing:0.04em;
     margin-right:0.4em;
   }
@@ -169,22 +169,10 @@
 
 <script>
   // ---- Encoded message (edit the plain text below, it re-encodes itself) ----
-  const message = "training for NSEP, NSEA, IOAA and JEE — mechanics, relativity, and the sky";
-  const encoded = btoa(message);
+  const message = "hi this is cyhgb, i love astrophysics, physics and math";
+  const encoded = btoa(unescape(encodeURIComponent(message)));
 
   document.getElementById('rawB64').textContent = encoded;
-
-  // Typewriter decode effect
-  const target = document.getElementById('decodeLine');
-  let i = 0;
-  function type(){
-    if(i <= message.length){
-      target.innerHTML = message.slice(0, i) + '<span class="rot13-label">ROT 13_</span><span class="cursor">&nbsp;</span>';
-      i++;
-      setTimeout(type, 28);
-    }
-  }
-  setTimeout(type, 1150);
 
   // Starfield canvas — cheap, no external assets
   const canvas = document.getElementById('sky');
