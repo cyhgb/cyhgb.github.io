@@ -135,6 +135,47 @@
     animation: rise 0.6s ease forwards 1.7s;
   }
 
+  .blackhole-wrap{
+    position:fixed;
+    top:50%;
+    right:-6vw;
+    transform:translateY(-50%);
+    width:min(48vw, 680px);
+    aspect-ratio:600 / 400;
+    z-index:1;
+    pointer-events:none;
+    opacity:0;
+    animation: bh-in 1.6s ease forwards 0.5s;
+  }
+  .blackhole-wrap svg{
+    display:block;
+    width:100%;
+    height:100%;
+  }
+  .disk-rotate{
+    transform-box:view-box;
+    transform-origin:50% 50%;
+  }
+  .disk-flow{
+    animation:flowDash 16s linear infinite;
+  }
+  @keyframes flowDash{
+    from{stroke-dashoffset:0;}
+    to{stroke-dashoffset:-994;}
+  }
+  @keyframes bh-in{
+    from{opacity:0; transform:translateY(-50%) scale(0.94);}
+    to{opacity:1; transform:translateY(-50%) scale(1);}
+  }
+  @media (max-width:900px){
+    .blackhole-wrap{
+      width:min(70vw, 480px);
+      top:auto; bottom:-8vh; right:-10vw; transform:none;
+      opacity:0.5;
+    }
+    @keyframes bh-in{ from{opacity:0;} to{opacity:0.5;} }
+  }
+
   @keyframes rise{
     from{opacity:0; transform:translateY(14px);}
     to{opacity:1; transform:translateY(0);}
@@ -157,6 +198,57 @@
 
 <canvas id="sky"></canvas>
 <div class="nebula"></div>
+
+<div class="blackhole-wrap" aria-hidden="true">
+  <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="bhGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#E8A857" stop-opacity="0.30"/>
+        <stop offset="45%" stop-color="#8C7BC7" stop-opacity="0.12"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="bhDisk" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#3E6E64" stop-opacity="0"/>
+        <stop offset="15%" stop-color="#8C7BC7" stop-opacity="0.55"/>
+        <stop offset="50%" stop-color="#E8A857" stop-opacity="0.95"/>
+        <stop offset="85%" stop-color="#8C7BC7" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="#3E6E64" stop-opacity="0"/>
+      </linearGradient>
+      <radialGradient id="bhHorizon" cx="42%" cy="38%" r="68%">
+        <stop offset="0%" stop-color="#0D0E16"/>
+        <stop offset="100%" stop-color="#000000"/>
+      </radialGradient>
+      <filter id="bhSoftBlur" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="6"/>
+      </filter>
+      <filter id="bhRingBlur" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="2"/>
+      </filter>
+      <clipPath id="bhFrontClip">
+        <path d="M 208 200 A 92 92 0 0 1 392 200 Z"/>
+      </clipPath>
+    </defs>
+
+    <circle cx="300" cy="200" r="220" fill="url(#bhGlow)"/>
+
+    <g class="disk-rotate">
+      <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="16" opacity="0.8" filter="url(#bhSoftBlur)"/>
+      <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="4" opacity="0.9"/>
+      <ellipse class="disk-flow" cx="300" cy="200" rx="230" ry="62" fill="none" stroke="#F1EDE4" stroke-width="3" stroke-linecap="round" opacity="0.55" stroke-dasharray="50 447 50 447" filter="url(#bhRingBlur)"/>
+    </g>
+
+    <circle cx="300" cy="200" r="92" fill="url(#bhHorizon)"/>
+
+    <g clip-path="url(#bhFrontClip)">
+      <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="16" opacity="0.85" filter="url(#bhSoftBlur)"/>
+      <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="4" opacity="0.95"/>
+      <ellipse class="disk-flow" cx="300" cy="200" rx="230" ry="62" fill="none" stroke="#F1EDE4" stroke-width="3" stroke-linecap="round" opacity="0.6" stroke-dasharray="50 447 50 447" filter="url(#bhRingBlur)"/>
+    </g>
+
+    <ellipse cx="300" cy="200" rx="112" ry="30" fill="none" stroke="#F1EDE4" stroke-width="2" opacity="0.5" filter="url(#bhRingBlur)"/>
+    <ellipse cx="300" cy="200" rx="100" ry="26" fill="none" stroke="#E8A857" stroke-width="1.2" opacity="0.8"/>
+  </svg>
+</div>
 
 <main>
   <div class="kicker">physics <span class="dot">&middot;</span> astronomy <span class="dot">&middot;</span> mathematics</div>
