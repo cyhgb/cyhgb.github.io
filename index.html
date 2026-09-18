@@ -138,9 +138,9 @@
   .blackhole-wrap{
     position:fixed;
     top:50%;
-    right:-6vw;
+    right:6vw;
     transform:translateY(-50%);
-    width:min(48vw, 680px);
+    width:min(38vw, 560px);
     aspect-ratio:600 / 400;
     z-index:1;
     pointer-events:none;
@@ -170,7 +170,7 @@
   @media (max-width:900px){
     .blackhole-wrap{
       width:min(70vw, 480px);
-      top:auto; bottom:-8vh; right:-10vw; transform:none;
+      top:auto; bottom:2vh; right:6vw; transform:none;
       opacity:0.5;
     }
     @keyframes bh-in{ from{opacity:0;} to{opacity:0.5;} }
