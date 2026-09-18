@@ -229,24 +229,26 @@
       </clipPath>
     </defs>
 
-    <circle cx="300" cy="200" r="220" fill="url(#bhGlow)"/>
+    <g transform="rotate(-12 300 200)">
+      <circle cx="300" cy="200" r="220" fill="url(#bhGlow)"/>
 
-    <g class="disk-rotate">
-      <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="16" opacity="0.8" filter="url(#bhSoftBlur)"/>
-      <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="4" opacity="0.9"/>
-      <ellipse class="disk-flow" cx="300" cy="200" rx="230" ry="62" fill="none" stroke="#F1EDE4" stroke-width="3" stroke-linecap="round" opacity="0.55" stroke-dasharray="50 447 50 447" filter="url(#bhRingBlur)"/>
+      <g class="disk-rotate">
+        <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="16" opacity="0.8" filter="url(#bhSoftBlur)"/>
+        <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="4" opacity="0.9"/>
+        <ellipse class="disk-flow" cx="300" cy="200" rx="230" ry="62" fill="none" stroke="#F1EDE4" stroke-width="3" stroke-linecap="round" opacity="0.55" stroke-dasharray="50 447 50 447" filter="url(#bhRingBlur)"/>
+      </g>
+
+      <circle cx="300" cy="200" r="92" fill="url(#bhHorizon)"/>
+
+      <g clip-path="url(#bhFrontClip)">
+        <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="16" opacity="0.85" filter="url(#bhSoftBlur)"/>
+        <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="4" opacity="0.95"/>
+        <ellipse class="disk-flow" cx="300" cy="200" rx="230" ry="62" fill="none" stroke="#F1EDE4" stroke-width="3" stroke-linecap="round" opacity="0.6" stroke-dasharray="50 447 50 447" filter="url(#bhRingBlur)"/>
+      </g>
+
+      <ellipse cx="300" cy="200" rx="112" ry="30" fill="none" stroke="#F1EDE4" stroke-width="2" opacity="0.5" filter="url(#bhRingBlur)"/>
+      <ellipse cx="300" cy="200" rx="100" ry="26" fill="none" stroke="#E8A857" stroke-width="1.2" opacity="0.8"/>
     </g>
-
-    <circle cx="300" cy="200" r="92" fill="url(#bhHorizon)"/>
-
-    <g clip-path="url(#bhFrontClip)">
-      <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="16" opacity="0.85" filter="url(#bhSoftBlur)"/>
-      <ellipse cx="300" cy="200" rx="230" ry="62" fill="none" stroke="url(#bhDisk)" stroke-width="4" opacity="0.95"/>
-      <ellipse class="disk-flow" cx="300" cy="200" rx="230" ry="62" fill="none" stroke="#F1EDE4" stroke-width="3" stroke-linecap="round" opacity="0.6" stroke-dasharray="50 447 50 447" filter="url(#bhRingBlur)"/>
-    </g>
-
-    <ellipse cx="300" cy="200" rx="112" ry="30" fill="none" stroke="#F1EDE4" stroke-width="2" opacity="0.5" filter="url(#bhRingBlur)"/>
-    <ellipse cx="300" cy="200" rx="100" ry="26" fill="none" stroke="#E8A857" stroke-width="1.2" opacity="0.8"/>
   </svg>
 </div>
 
