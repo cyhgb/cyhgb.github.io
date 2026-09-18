@@ -151,6 +151,7 @@
     display:block;
     width:100%;
     height:100%;
+    overflow:visible;
   }
   .disk-rotate{
     transform-box:view-box;
@@ -162,6 +163,20 @@
   @keyframes flowDash{
     from{stroke-dashoffset:0;}
     to{stroke-dashoffset:-994;}
+  }
+  .jet-pulse{
+    animation:jetPulse 2.6s ease-in-out infinite alternate;
+  }
+  @keyframes jetPulse{
+    from{opacity:0.5;}
+    to{opacity:1;}
+  }
+  .jet-flow{
+    animation:jetFlow 2.2s linear infinite;
+  }
+  @keyframes jetFlow{
+    from{stroke-dashoffset:0;}
+    to{stroke-dashoffset:-120;}
   }
   @keyframes bh-in{
     from{opacity:0; transform:translateY(-50%) scale(0.94);}
@@ -227,6 +242,21 @@
       <clipPath id="bhFrontClip">
         <path d="M 208 200 A 92 92 0 0 1 392 200 Z"/>
       </clipPath>
+      <linearGradient id="beamGradUp" x1="0" y1="0%" x2="0" y2="100%">
+        <stop offset="0%" stop-color="#F1EDE4" stop-opacity="0"/>
+        <stop offset="65%" stop-color="#E8A857" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#F1EDE4" stop-opacity="0.95"/>
+      </linearGradient>
+      <linearGradient id="beamGradDown" x1="0" y1="0%" x2="0" y2="100%">
+        <stop offset="0%" stop-color="#F1EDE4" stop-opacity="0.95"/>
+        <stop offset="35%" stop-color="#E8A857" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#F1EDE4" stop-opacity="0"/>
+      </linearGradient>
+      <radialGradient id="poleFlare" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F1EDE4" stop-opacity="0.95"/>
+        <stop offset="40%" stop-color="#E8A857" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="#E8A857" stop-opacity="0"/>
+      </radialGradient>
     </defs>
 
     <g transform="rotate(-12 300 200)">
@@ -248,6 +278,17 @@
 
       <ellipse cx="300" cy="200" rx="112" ry="30" fill="none" stroke="#F1EDE4" stroke-width="2" opacity="0.5" filter="url(#bhRingBlur)"/>
       <ellipse cx="300" cy="200" rx="100" ry="26" fill="none" stroke="#E8A857" stroke-width="1.2" opacity="0.8"/>
+
+      <polygon points="272,108 328,108 300,-1800" fill="url(#beamGradUp)" opacity="0.45" filter="url(#bhSoftBlur)"/>
+      <polygon points="290,108 310,108 300,-1800" fill="url(#beamGradUp)" opacity="0.85" class="jet-pulse"/>
+      <line x1="300" y1="108" x2="300" y2="-1800" stroke="#F1EDE4" stroke-width="3" stroke-linecap="round" stroke-dasharray="14 46" opacity="0.75" filter="url(#bhRingBlur)" class="jet-flow"/>
+
+      <polygon points="272,292 328,292 300,2000" fill="url(#beamGradDown)" opacity="0.45" filter="url(#bhSoftBlur)"/>
+      <polygon points="290,292 310,292 300,2000" fill="url(#beamGradDown)" opacity="0.85" class="jet-pulse"/>
+      <line x1="300" y1="292" x2="300" y2="2000" stroke="#F1EDE4" stroke-width="3" stroke-linecap="round" stroke-dasharray="14 46" opacity="0.75" filter="url(#bhRingBlur)" class="jet-flow"/>
+
+      <circle cx="300" cy="108" r="30" fill="url(#poleFlare)" filter="url(#bhSoftBlur)" class="jet-pulse"/>
+      <circle cx="300" cy="292" r="30" fill="url(#poleFlare)" filter="url(#bhSoftBlur)" class="jet-pulse"/>
     </g>
   </svg>
 </div>
